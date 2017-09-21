@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics;
+using SBad.FloorPlan.Navigation;
 
 namespace SBad.FloorPlan.Test
 {
@@ -21,7 +22,7 @@ namespace SBad.FloorPlan.Test
 			plan.GetFloorTile(0, 8).Cost = 3;
 
 			NavigationService service = NSubstitute.Substitute.For<NavigationService>(plan);
-			var path = service.PathFind(new Point(0, 0), new Point(14, 8));
+			var path = service.FindPath(new Point(0, 0), new Point(14, 8));
 
 			Debug.Write(plan.Print(path));
 		}
@@ -50,7 +51,7 @@ namespace SBad.FloorPlan.Test
 			Debug.WriteLine(display);
 
 			NavigationService navService = NSubstitute.Substitute.For<NavigationService>(plan);
-			var path = navService.PathFind(new Point(1, 1), new Point(5, 14));
+			var path = navService.FindPath(new Point(1, 1), new Point(5, 14));
 			display = plan.Print(path);
 			Debug.Write(display);
 		}
