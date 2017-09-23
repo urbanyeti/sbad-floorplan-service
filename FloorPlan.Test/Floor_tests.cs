@@ -50,7 +50,7 @@ namespace SBad.FloorPlan.Test
 			FloorPlan plan = NSubstitute.Substitute.For<FloorPlan>();
 			plan.FloorTiles.AddRange(_FillArea(3, 1));
 
-			plan.BotAgents.Add(new BotAgent { X = 1, Y = 0 });
+			plan.BotAgents.Add(new BotAgent { Point = new Point(1, 0) });
 			string display = plan.Print();
 
 			Debug.Write(display);
@@ -106,8 +106,8 @@ namespace SBad.FloorPlan.Test
 			plan.IsAgentOnTile(11, 4).Should().BeFalse();
 
 			BotAgent agent = NSubstitute.Substitute.For<BotAgent>();
-			agent.X = 11;
-			agent.Y = 4;
+			agent.Point = new Point(11, 4);
+
 			plan.BotAgents.Add(agent);
 			plan.IsAgentOnTile(11, 4).Should().BeTrue();
 

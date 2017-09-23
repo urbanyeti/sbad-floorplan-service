@@ -25,20 +25,20 @@ namespace SBad.FloorPlan.Navigation
 			var nodeDistance = new Dictionary<Point, int>();
 			var expectedDistance = new Dictionary<Point, float>();
 
-			// init
+			// Init
 			nodeDistance.Add(start, 0);
 			expectedDistance.Add(start, 0 + +Math.Abs(start.X - end.X) + Math.Abs(start.Y - end.Y));
 
 			while (newNodes.Count > 0)
 			{
-				// get the node with the lowest estimated cost to finish
+				// Get the node with the lowest estimated cost to finish
 				var current = newNodes.OrderBy(x => expectedDistance[x]).First();
 				if (current.X == end.X && current.Y == end.Y)
 				{
-					// we're done-- grab the most direct route
+					// We're done-- grab the most direct route
 					return _ShortestPath(parentNodes, end);
 				}
-				// node is checked
+				// Node is checked
 				newNodes.Remove(current);
 				checkedNodes.Add(current);
 
@@ -46,7 +46,7 @@ namespace SBad.FloorPlan.Navigation
 				{
 					var currentDistance = nodeDistance[current] + Weight[neighbor.X, neighbor.Y];
 
-					// already found shorter path?
+					// Already found shorter path?
 					if (checkedNodes.Contains(neighbor) && currentDistance >= nodeDistance[neighbor])
 					{
 						continue;
