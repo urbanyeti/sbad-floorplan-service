@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.4</TargetFramework>
-    <RootNamespace>SBad.FloorPlan</RootNamespace>
-    <AssemblyName>SBad.FloorPlan</AssemblyName>
+    <RootNamespace>SBad.Map</RootNamespace>
+    <AssemblyName>SBad.Map</AssemblyName>
   </PropertyGroup>
 
 </Project>

@@ -1,7 +1,7 @@
-﻿using SBad.FloorPlan;
+﻿using SBad.Map;
 using System.Collections.Generic;
 
-namespace SBad.FloorPlan.Navigation
+namespace SBad.Map.Navigation
 {
 	public interface IPathfinder
 	{

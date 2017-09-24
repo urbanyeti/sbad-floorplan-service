@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SBad.FloorPlan
+namespace SBad.Map
 {
-    public class BotAgent
-    {
+	public class BotAgent
+	{
 		public string Name { get; set; }
 		public Point Point { get; set; }
 		public Point? OldPoint { get; set; }
@@ -18,20 +18,50 @@ namespace SBad.FloorPlan
 			Path = path;
 		}
 
-		public bool FollowPath()
+		public bool FollowPath(FloorPlan plan)
 		{
 			int currentIndex = Path.FindIndex(p => p.X == X && p.Y == Y);
 			if (currentIndex < Path.Count - 1)
 			{
 				Point nextPoint = Path[currentIndex + 1];
-				OldPoint = Point;
-				Point = nextPoint;
-				return true;
+				var tile = plan.GetFloorTile(nextPoint);
+				if (tile.Cost > 1)
+				{
+					AttackTile(tile);
+					return true;
+				}
+				else
+				{
+					OldPoint = Point;
+					Point = nextPoint;
+					return true;
+				}
 			}
 			else
 			{
 				return false;
 			}
+		}
+
+		public bool AttackTile(FloorTile tile)
+		{
+			if (tile != null && Point.IsNearby(tile.Point))
+			{
+				if (tile.Cost > 1)
+				{
+					tile.Cost = tile.Cost - 1;
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+			else
+			{
+				return false;
+			}
+
 		}
 	}
 

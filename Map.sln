@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FloorPlan", "FloorPlan\FloorPlan.csproj", "{F9E5CE2F-4359-4E11-A2B4-10424920FCD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Map", "Map\Map.csproj", "{F9E5CE2F-4359-4E11-A2B4-10424920FCD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloorPlan.Test", "FloorPlan.Test\FloorPlan.Test.csproj", "{974AF008-2D4E-4C2A-A9EF-1CEA9DAA53B2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Map.Test", "Map.Test\Map.Test.csproj", "{974AF008-2D4E-4C2A-A9EF-1CEA9DAA53B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

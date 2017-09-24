@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SBad.FloorPlan
+namespace SBad.Map
 {
 	public class FloorTile
 	{
 		public FloorTile(int x, int y, int? cost = null, string notes = "")
 		{
-			X = x;
-			Y = y;
+			Point = new Point(x, y);
 			Cost = cost;
 			Notes = notes;
 		}
-		public int X { get; set; }
-		public int Y { get; set; }
+		public Point Point { get; set; }
+		public int X { get { return Point.X; } }
+		public int Y { get { return Point.Y; } }
 		public int? Cost { get; set; }
 		public string Notes { get; set; } = "";
 		public FloorTile Shift(Point origin)

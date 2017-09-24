@@ -1,4 +1,4 @@
-﻿namespace SBad.FloorPlan
+﻿namespace SBad.Map
 {
 	public class RoomPlan
 	{

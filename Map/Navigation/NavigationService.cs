@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SBad.FloorPlan.Navigation
+namespace SBad.Map.Navigation
 {
 	public class NavigationService
 	{

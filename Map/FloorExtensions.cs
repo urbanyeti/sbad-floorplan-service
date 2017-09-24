@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SBad.FloorPlan
+namespace SBad.Map
 {
 	public static class FloorExtensions
 	{

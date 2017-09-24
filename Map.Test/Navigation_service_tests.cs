@@ -3,10 +3,10 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics;
-using SBad.FloorPlan.Navigation;
+using SBad.Map.Navigation;
 using FluentAssertions;
 
-namespace SBad.FloorPlan.Test
+namespace SBad.Map.Test
 {
 	[TestClass]
 	public class Navigation_service_tests
@@ -54,47 +54,6 @@ namespace SBad.FloorPlan.Test
 			var path = navService.FindPath(new Point(1, 1), new Point(5, 14));
 			display = plan.Print(path);
 			Debug.Write(display);
-		}
-
-		[TestMethod]
-		public void NavigationService_agent_follows_path()
-		{
-			RoomService roomService = NSubstitute.Substitute.For<RoomService>();
-			FloorPlan plan = new FloorPlan(5, 4);
-
-			BotAgent agent = NSubstitute.Substitute.For<BotAgent>();
-			agent.Point = new Point(1, 1);
-			plan.BotAgents.Add(agent);
-
-			NavigationService navService = NSubstitute.Substitute.For<NavigationService>(plan);
-			agent.SetPath(navService.FindPath(agent.Point, new Point(3, 2)));
-
-			agent.Path.Count.ShouldBeEquivalentTo(4);
-
-			var display = plan.Print(agent.Path);
-			Debug.WriteLine(display);
-			display.ShouldBeEquivalentTo("+++++" + Environment.NewLine + "+@11+" + Environment.NewLine + "+===+"
-				+ Environment.NewLine+ "+++++" + Environment.NewLine);
-
-			agent.FollowPath().Should().BeTrue();
-			display = plan.Print(agent.Path);
-			Debug.WriteLine(display);
-			display.ShouldBeEquivalentTo("+++++" + Environment.NewLine + "+=11+" + Environment.NewLine + "+@==+"
-				+ Environment.NewLine + "+++++" + Environment.NewLine);
-
-			agent.FollowPath().Should().BeTrue();
-			display = plan.Print(agent.Path);
-			Debug.WriteLine(display);
-			display.ShouldBeEquivalentTo("+++++" + Environment.NewLine + "+=11+" + Environment.NewLine + "+=@=+"
-				+ Environment.NewLine + "+++++" + Environment.NewLine);
-
-			agent.FollowPath().Should().BeTrue();
-			display = plan.Print(agent.Path);
-			Debug.WriteLine(display);
-			display.ShouldBeEquivalentTo("+++++" + Environment.NewLine + "+=11+" + Environment.NewLine + "+==@+"
-				+ Environment.NewLine + "+++++" + Environment.NewLine);
-
-			agent.FollowPath().Should().BeFalse();
 		}
 
 		private IEnumerable<FloorTile> _FillArea(int width, int height, int? cost = null)

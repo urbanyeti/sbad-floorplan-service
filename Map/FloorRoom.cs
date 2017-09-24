@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SBad.FloorPlan
+namespace SBad.Map
 {
     public class FloorRoom
     {

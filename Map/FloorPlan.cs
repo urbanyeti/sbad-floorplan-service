@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SBad.FloorPlan
+namespace SBad.Map
 {
 	public class FloorPlan
 	{
@@ -46,6 +46,11 @@ namespace SBad.FloorPlan
 					}
 				}
 			}
+		}
+
+		public FloorTile GetFloorTile(Point point)
+		{
+			return GetFloorTile(point.X, point.Y);
 		}
 
 		public FloorTile GetFloorTile(int x, int y)

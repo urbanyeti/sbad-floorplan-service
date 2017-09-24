@@ -4,7 +4,7 @@ using System.Diagnostics;
 using FluentAssertions;
 using System.Collections.Generic;
 
-namespace SBad.FloorPlan.Test
+namespace SBad.Map.Test
 {
 	[TestClass]
 	public class Floor_tests
