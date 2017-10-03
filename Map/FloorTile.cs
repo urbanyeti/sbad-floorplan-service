@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SBad.Map
 {
-    public class FloorTile : ITile
+	public class FloorTile : ITile
 	{
 		public FloorTile(int x, int y, int? cost = null, string notes = "")
 		{

@@ -13,10 +13,10 @@ namespace SBad.Map
 			Width = width;
 			Height = height;
 
-            if (fill)
-            {
+			if (fill)
+			{
 				FillArea(width, height, cost: 1, borders: true);
-            }
+			}
 
 		}
 		public string Name { get; set; }
