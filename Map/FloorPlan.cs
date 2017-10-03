@@ -8,11 +8,16 @@ namespace SBad.Map
 	public class FloorPlan
 	{
 		public FloorPlan() { }
-		public FloorPlan(int width, int height)
+		public FloorPlan(int width, int height, bool fill = false)
 		{
 			Width = width;
 			Height = height;
-			FillArea(width, height, cost: 1, borders: true);
+
+            if (fill)
+            {
+				FillArea(width, height, cost: 1, borders: true);
+            }
+
 		}
 		public string Name { get; set; }
 		public int Width { get; set; }
