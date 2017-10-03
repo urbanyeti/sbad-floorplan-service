@@ -83,12 +83,20 @@ namespace SBad.Map.Navigation
 
 			// North
 			if (node.Y > 0 && Weight[node.X, node.Y - 1] > 0) { nodes.Add(new Point(node.X, node.Y - 1)); }
+			// Northeast
+			if (node.Y > 0 && Weight[node.X + 1, node.Y - 1] > 0) { nodes.Add(new Point(node.X + 1, node.Y - 1)); }
 			// East
 			if (node.X < MaxCol && Weight[node.X + 1, node.Y] > 0) { nodes.Add(new Point(node.X + 1, node.Y)); }
+			// Southeast
+			if (node.Y < MaxRow && Weight[node.X + 1, node.Y + 1] > 0) { nodes.Add(new Point(node.X + 1, node.Y + 1)); }
 			// South
 			if (node.Y < MaxRow && Weight[node.X, node.Y + 1] > 0) { nodes.Add(new Point(node.X, node.Y + 1)); }
+			// Southwest
+			if (node.X > 0 && Weight[node.X - 1, node.Y + 1] > 0) { nodes.Add(new Point(node.X - 1, node.Y + 1)); }
 			// West
 			if (node.X > 0 && Weight[node.X - 1, node.Y] > 0) { nodes.Add(new Point(node.X - 1, node.Y)); }
+			// Northwest
+			if (node.X > 0 && Weight[node.X - 1, node.Y - 1] > 0) { nodes.Add(new Point(node.X - 1, node.Y - 1)); }
 
 			return nodes;
 		}
