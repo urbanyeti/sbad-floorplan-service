@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SBad.Map
@@ -8,6 +9,7 @@ namespace SBad.Map
     {
 		public string Name { get; set; }
 		public List<FloorTile> FloorTiles { get; set; } = new List<FloorTile>();
+        public List<DoorTile> DoorTiles { get { return FloorTiles.Where(x=> x is DoorTile).Select(x=> (DoorTile)x).ToList();}}
 		public string Notes { get; set; }
 
 		public FloorRoom Shift(Point point)
