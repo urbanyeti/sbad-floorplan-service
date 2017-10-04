@@ -15,7 +15,7 @@ namespace SBad.Map.Navigation
 
 		public int MaxRow { get; set; }
 		public int MaxCol { get; set; }
-		public int[,] Weight;
+		public decimal[,] Weight;
 		public IPathfinder Pathfinder { get; set; }
 
 		public void Refresh(FloorPlan floorPlan)
@@ -23,7 +23,7 @@ namespace SBad.Map.Navigation
 			MaxRow = floorPlan.FloorTiles.Max(x => x.Y);
 			MaxCol = floorPlan.FloorTiles.Max(x => x.X);
 
-			Weight = new int[MaxCol + 1, MaxRow + 1];
+			Weight = new decimal[MaxCol + 1, MaxRow + 1];
 
 			for (int row = 0; row <= MaxRow; row++)
 			{

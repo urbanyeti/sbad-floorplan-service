@@ -87,5 +87,10 @@ namespace SBad.Map
 		{
 			return !p1.Equals(p2);
 		}
+
+		public override string ToString()
+		{
+			return $"({X},{Y})";
+		}
 	}
 }

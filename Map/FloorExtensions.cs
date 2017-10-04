@@ -28,6 +28,16 @@ namespace SBad.Map
 			return floorPlan.FloorTiles.SingleOrDefault(t => t.X == floorTile?.X + 1 && t.Y == floorTile?.Y);
 		}
 
+		public static FloorTile GetFloorTile(this FloorPlan floorPlan, int x, int y)
+		{
+			return floorPlan.FloorTiles.GetFloorTile(x, y);
+		}
+
+		public static FloorTile GetFloorTile(this IEnumerable<FloorTile> floorTiles, int x, int y)
+		{
+			return floorTiles.SingleOrDefault(t => x >= 0 && y >= 0 && t.X == x && t.Y == y);
+		}
+
 		public static bool IsAgentOnTile(this FloorPlan floorPlan, FloorTile floorTile)
 		{
 			if (floorTile == null)
@@ -66,7 +76,8 @@ namespace SBad.Map
 					}
 					else if (path.Contains(new Point(col, row)))
 					{
-						sb.Append("=");
+						sb.Append(path.IndexOf(new Point(col, row)).ToLetter());
+						//sb.Append("=");
 					}
 					else
 					{
@@ -82,21 +93,44 @@ namespace SBad.Map
 			return output;
 		}
 
+		public static string Print(this IEnumerable<FloorTile> floorTiles)
+		{
+			var sb = new StringBuilder();
+			var maxRow = floorTiles.Max(x => x.Y);
+			var maxCol = floorTiles.Max(x => x.X);
+
+			for (int row = 0; row <= maxRow; row++)
+			{
+				for (int col = 0; col <= maxCol; col++)
+				{
+					var tile = floorTiles.GetFloorTile(col, row);
+					sb.Append(tile.Print());
+				}
+				sb.AppendLine();
+			}
+			string output = sb.ToString();
+
+			return output;
+		}
+
 		public static string Print(this FloorTile floorTile)
 		{
-			if (floorTile?.Cost == null || floorTile?.Cost < 0)
+			switch(floorTile?.Cost)
 			{
-				return "+";
+				case var c when (c == null || c < 0):
+					return "+";
+				case var c when (c == 1):
+					return "_";
+				case var c when (c >= 0 && c <= 9):
+					return c.ToString();
+				default:
+					return "X";
 			}
+		}
 
-			if (floorTile.Cost >= 0 && floorTile.Cost <= 9)
-			{
-				return floorTile.Cost.ToString();
-			}
-			else
-			{
-				return "X";
-			}
+		public static string ToLetter(this int number)
+		{
+			return Convert.ToChar(number + 65).ToString();
 		}
 	}
 }

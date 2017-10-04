@@ -21,5 +21,10 @@ namespace SBad.Map
 		{
 			return new FloorTile(X + origin.X, Y + origin.Y, Cost, Notes);
 		}
+
+		public override string ToString()
+		{
+			return Point.ToString();	
+		}
 	}
 }
