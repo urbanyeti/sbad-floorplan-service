@@ -32,7 +32,7 @@ namespace SBad.Map.Test
 		public void NavigationService_weighs_values()
 		{
 			RoomService roomService = NSubstitute.Substitute.For<RoomService>();
-			FloorPlan plan = new FloorPlan(20, 20);
+			FloorPlan plan = new FloorPlan(20, 20, fill:true);
 
 			RoomPlan roomPlan = new RoomPlan
 			{
@@ -41,8 +41,7 @@ namespace SBad.Map.Test
 				Height = 5,
 				WallValue = 20,
 				FloorValue = 1,
-				DoorValue = 3,
-				DoorWall = Direction.East
+				DoorTile = new DoorTile(4, 2, 3, "Door")
 			};
 			FloorRoom room = roomService.GenerateRoom(roomPlan);
 			plan.AddRoom(room, new Point(3, 12));

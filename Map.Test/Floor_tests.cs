@@ -26,7 +26,7 @@ namespace SBad.Map.Test
 			string display = plan.Print();
 
 			Debug.Write(display);
-			display.ShouldBeEquivalentTo("++123" + Environment.NewLine + "456X+" + Environment.NewLine);
+			display.ShouldBeEquivalentTo("++_23" + Environment.NewLine + "456X+" + Environment.NewLine);
 		}
 
 		[TestMethod]
@@ -41,7 +41,7 @@ namespace SBad.Map.Test
 			string display = plan.Print(path);
 
 			Debug.Write(display);
-			display.ShouldBeEquivalentTo("=+" + Environment.NewLine + "+=" + Environment.NewLine);
+			display.ShouldBeEquivalentTo("A+" + Environment.NewLine + "+B" + Environment.NewLine);
 		}
 
 		[TestMethod]

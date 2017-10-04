@@ -18,7 +18,7 @@ namespace SBad.Map.Test
 		public void Agent_follows_path()
 		{
 			RoomService roomService = NSubstitute.Substitute.For<RoomService>();
-			FloorPlan plan = new FloorPlan(5, 4);
+			FloorPlan plan = new FloorPlan(5, 4, fill:true);
 
 			BotAgent agent = NSubstitute.Substitute.For<BotAgent>();
 			agent.Point = new Point(1, 1);
@@ -27,29 +27,24 @@ namespace SBad.Map.Test
 			NavigationService navService = NSubstitute.Substitute.For<NavigationService>(plan);
 			agent.SetPath(navService.FindPath(agent.Point, new Point(3, 2)));
 
-			agent.Path.Count.ShouldBeEquivalentTo(4);
-
 			var display = plan.Print(agent.Path);
 			Debug.WriteLine(display);
-			display.ShouldBeEquivalentTo("+++++" + Environment.NewLine + "+@11+" + Environment.NewLine + "+===+"
+
+			agent.Path.Count.ShouldBeEquivalentTo(3);
+
+			display.ShouldBeEquivalentTo("+++++" + Environment.NewLine + "+@__+" + Environment.NewLine + "+_BC+"
 				+ Environment.NewLine + "+++++" + Environment.NewLine);
 
 			agent.FollowPath(plan).Should().BeTrue();
 			display = plan.Print(agent.Path);
 			Debug.WriteLine(display);
-			display.ShouldBeEquivalentTo("+++++" + Environment.NewLine + "+=11+" + Environment.NewLine + "+@==+"
+			display.ShouldBeEquivalentTo("+++++" + Environment.NewLine + "+A__+" + Environment.NewLine + "+_@C+"
 				+ Environment.NewLine + "+++++" + Environment.NewLine);
 
 			agent.FollowPath(plan).Should().BeTrue();
 			display = plan.Print(agent.Path);
 			Debug.WriteLine(display);
-			display.ShouldBeEquivalentTo("+++++" + Environment.NewLine + "+=11+" + Environment.NewLine + "+=@=+"
-				+ Environment.NewLine + "+++++" + Environment.NewLine);
-
-			agent.FollowPath(plan).Should().BeTrue();
-			display = plan.Print(agent.Path);
-			Debug.WriteLine(display);
-			display.ShouldBeEquivalentTo("+++++" + Environment.NewLine + "+=11+" + Environment.NewLine + "+==@+"
+			display.ShouldBeEquivalentTo("+++++" + Environment.NewLine + "+A__+" + Environment.NewLine + "+_B@+"
 				+ Environment.NewLine + "+++++" + Environment.NewLine);
 
 			agent.FollowPath(plan).Should().BeFalse();
@@ -59,7 +54,7 @@ namespace SBad.Map.Test
 		public void Agents_attack_tiles()
 		{
 			RoomService roomService = NSubstitute.Substitute.For<RoomService>();
-			FloorPlan plan = new FloorPlan(3, 3);
+			FloorPlan plan = new FloorPlan(3, 3, fill:true);
 
 			BotAgent agent = NSubstitute.Substitute.For<BotAgent>();
 			agent.Point = new Point(1, 1);
