@@ -37,23 +37,30 @@ namespace SBad.Map.Navigation
 			}
 		}
 
-        public List<Point> Navigate(Point start, Point end)
+        public List<Point> Navigate(Point start, Point end, List<Point> path)
         {
-            var points = new List<Point>();
-
+            List<Point> pathSoFar = path;
             FloorRoom room = FloorPlan.GetRoom(start);
 
             if (room == FloorPlan.GetRoom((end)))
             {
-                return FindPath(start, end); 
+                pathSoFar.AddRange(FindPath(start, end));
+                return pathSoFar;
             }
             else
             {
-                
+                var doors = room.DoorTiles;
+                foreach(var door in room.DoorTiles)
+                {
+                    pathSoFar.AddRange(Pathfinder.FindPath(start, door.Point));
+                    var exitTile = door.ExitTile;
+
+                    Navigate(exitTile.Point, end, pathSoFar);
+                }
             }
 
 
-            return points;
+            return pathSoFar;
         }
 
 		public List<Point> FindPath(Point start, Point end)
