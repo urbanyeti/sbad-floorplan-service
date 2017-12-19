@@ -22,7 +22,7 @@ namespace SBad.Map.Test
 
 			BotAgent agent = NSubstitute.Substitute.For<BotAgent>();
 			agent.Point = new Point(1, 1);
-			plan.BotAgents.Add(agent);
+			plan.AddAgent(agent);
 
 			NavigationService navService = NSubstitute.Substitute.For<NavigationService>(plan);
 			agent.SetPath(navService.FindPath(agent.Point, new Point(3, 2)));
@@ -58,7 +58,7 @@ namespace SBad.Map.Test
 
 			BotAgent agent = NSubstitute.Substitute.For<BotAgent>();
 			agent.Point = new Point(1, 1);
-			plan.BotAgents.Add(agent);
+			plan.AddAgent(agent);
 
 			var tile = plan.GetFloorTile(2, 2);
 			agent.AttackTile(tile).Should().BeFalse();

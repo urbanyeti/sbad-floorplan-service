@@ -22,9 +22,9 @@ namespace SBad.Map
 		public string Name { get; set; }
 		public int Width { get; set; }
 		public int Height { get; set; }
-		protected List<FloorRoom> FloorRooms { get; private set; } = new List<FloorRoom>();
+		protected List<FloorRoom> FloorRooms { get; } = new List<FloorRoom>();
 		public List<ITile> FloorTiles { get; set; } = new List<ITile>();
-		public List<BotAgent> BotAgents { get; set; } = new List<BotAgent>();
+		protected List<BotAgent> BotAgents { get; } = new List<BotAgent>();
 		public string Notes { get; set; }
 
 		public void AddRoom(FloorRoom room)
@@ -47,6 +47,27 @@ namespace SBad.Map
 					FloorTiles.Add(tile);
 				}
 			}
+		}
+
+		public void AddAgent(BotAgent agent)
+		{
+			BotAgents.Add(agent);
+		}
+
+		public bool IsAgentOnTile(ITile floorTile)
+		{
+			if (floorTile == null)
+			{
+				return false;
+			}
+
+			return BotAgents.Any(b => b.X == floorTile.X && b.Y == floorTile.Y);
+		}
+
+		public bool IsAgentOnTile(int x, int y)
+		{
+			var tile = GetFloorTile(x, y);
+			return IsAgentOnTile(tile);
 		}
 
 		public ITile GetFloorTile(Point point)

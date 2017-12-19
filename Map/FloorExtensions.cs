@@ -38,23 +38,6 @@ namespace SBad.Map
 			return floorTiles.SingleOrDefault(t => x >= 0 && y >= 0 && t.X == x && t.Y == y);
 		}
 
-		public static bool IsAgentOnTile(this FloorPlan floorPlan, ITile floorTile)
-		{
-			if (floorTile == null)
-			{
-				return false;
-			}
-
-			return floorPlan.BotAgents.Any(b => b.X == floorTile.X && b.Y == floorTile.Y);
-		}
-
-		public static bool IsAgentOnTile(this FloorPlan floorPlan, int x, int y)
-		{
-			var tile = floorPlan.GetFloorTile(x, y);
-			return floorPlan.IsAgentOnTile(tile);
-		}
-
-
 		public static string Print(this FloorPlan floorPlan, List<Point> path = null)
 		{
 			if (path == null)
