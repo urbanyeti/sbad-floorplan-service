@@ -7,7 +7,7 @@ namespace SBad.Map
     public class FloorRoom
     {
 		public string Name { get; set; }
-		public List<FloorTile> FloorTiles { get; set; } = new List<FloorTile>();
+		public List<ITile> FloorTiles { get; set; } = new List<ITile>();
 		public string Notes { get; set; }
 
 		public FloorRoom Shift(Point point)

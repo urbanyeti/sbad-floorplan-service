@@ -17,7 +17,7 @@ namespace SBad.Map
 		public int Y { get { return Point.Y; } }
 		public int? Cost { get; set; }
 		public string Notes { get; set; } = "";
-		public FloorTile Shift(Point origin)
+		public virtual ITile Shift(Point origin)
 		{
 			return new FloorTile(X + origin.X, Y + origin.Y, Cost, Notes);
 		}

@@ -23,7 +23,7 @@ namespace SBad.Map
 		public int Width { get; set; }
 		public int Height { get; set; }
 		protected List<FloorRoom> FloorRooms { get; private set; } = new List<FloorRoom>();
-		public List<FloorTile> FloorTiles { get; set; } = new List<FloorTile>();
+		public List<ITile> FloorTiles { get; set; } = new List<ITile>();
 		public List<BotAgent> BotAgents { get; set; } = new List<BotAgent>();
 		public string Notes { get; set; }
 
@@ -42,32 +42,26 @@ namespace SBad.Map
 					var oldTile = GetFloorTile(tile.X, tile.Y);
 					if (oldTile != null)
 					{
-						oldTile.Cost = tile.Cost;
-						oldTile.Notes = tile.Notes;
+						FloorTiles.Remove(oldTile);
 					}
-					else
-					{
-						FloorTiles.Add(tile);
-					}
+					FloorTiles.Add(tile);
 				}
 			}
 		}
 
-		public FloorTile GetFloorTile(Point point)
+		public ITile GetFloorTile(Point point)
 		{
 			return GetFloorTile(point.X, point.Y);
 		}
 
-		public FloorTile GetFloorTile(int x, int y)
+		public ITile GetFloorTile(int x, int y)
 		{
 			return FloorTiles.SingleOrDefault(t => x >= 0 && y >= 0 && t.X == x && t.Y == y);
 		}
 
-
-
 		public void FillArea(int width, int height, int cost, bool borders)
 		{
-			FloorTiles = new List<FloorTile>();
+			FloorTiles = new List<ITile>();
 			for (int col = 0; col < width; col++)
 			{
 				for (int row = 0; row < height; row++)

@@ -9,7 +9,7 @@ namespace SBad.Map
 		public FloorRoom GenerateRoom(RoomPlan roomType)
 		{
 			FloorRoom room = new FloorRoom();
-			room.FloorTiles = new List<FloorTile>();
+			room.FloorTiles = new List<ITile>();
 
 			for (int col = 0; col < roomType.Width; col++)
 			{

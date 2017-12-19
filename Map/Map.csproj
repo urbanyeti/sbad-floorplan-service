@@ -4,6 +4,19 @@
     <TargetFramework>netstandard1.4</TargetFramework>
     <RootNamespace>SBad.Map</RootNamespace>
     <AssemblyName>SBad.Map</AssemblyName>
+    <Description>Utilities for creating map navigation</Description>
+    <AssemblyVersion>0.5.9.0</AssemblyVersion>
+    <Version>0.5.9-beta</Version>
+    <PackageLicenseUrl>https://github.com/urbanyeti/sbad-floorplan-service/blob/master/LICENSE</PackageLicenseUrl>
+    <Copyright>Urbanyeti</Copyright>
+    <PackageProjectUrl>https://github.com/urbanyeti/sbad-floorplan-service</PackageProjectUrl>
+    <PackageTags>sbad map pathfinding navigation</PackageTags>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <NeutralLanguage>en</NeutralLanguage>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>C:\Projects\Packages\</OutputPath>
   </PropertyGroup>
 
 </Project>

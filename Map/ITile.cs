@@ -8,6 +8,6 @@ namespace SBad.Map
 		int Y { get; } 
 		int? Cost { get; set; }
 		string Notes { get; set; }
-		FloorTile Shift(Point origin);
+		ITile Shift(Point origin);
 	}
 }

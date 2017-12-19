@@ -11,5 +11,10 @@ namespace SBad.Map
 		{
 			
 		}
+
+		public override ITile Shift(Point origin)
+		{
+			return new DoorTile(X + origin.X, Y + origin.Y, Cost, Notes);
+		}
 	}
 }

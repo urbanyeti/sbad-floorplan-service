@@ -43,7 +43,7 @@ namespace SBad.Map
 			}
 		}
 
-		public bool AttackTile(FloorTile tile)
+		public bool AttackTile(ITile tile)
 		{
 			if (tile != null && Point.IsNearby(tile.Point))
 			{
