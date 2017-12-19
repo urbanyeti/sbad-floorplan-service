@@ -7,7 +7,7 @@ namespace SBad.Map.Navigation
 {
     public class AStarPathfinder : IPathfinder
     {
-		public AStarPathfinder(int maxRow, int maxCol, decimal[,] weight)
+		public AStarPathfinder(int maxRow, int maxCol, int[,] weight)
 		{
 			MaxRow = maxRow;
 			MaxCol = maxCol;
@@ -15,7 +15,7 @@ namespace SBad.Map.Navigation
 		}
 		public int MaxRow { get; set; }
 		public int MaxCol { get; set; }
-		public decimal[,] Weight { get; set; }
+		public int[,] Weight { get; set; }
 
 		public List<Point> FindPath(Point start, Point end)
 		{
@@ -45,14 +45,6 @@ namespace SBad.Map.Navigation
 				foreach (var neighbor in _GetNearbyNodes(current))
 				{
 					var weight = Weight[neighbor.X, neighbor.Y];
-
-					//switch (neighbor)
-					//{
-					//	case var n when (Math.Abs(current.X - n.X) + Math.Abs(current.Y - n.Y) > 1):
-					//		weight *= 1.4m;
-					//		break;
-
-					//}
 					var currentDistance = nodeDistance[current] + weight;
 
 					// Already found shorter path?
