@@ -80,6 +80,16 @@ namespace SBad.Map
 			return FloorTiles.SingleOrDefault(t => x >= 0 && y >= 0 && t.X == x && t.Y == y);
 		}
 
+        public FloorRoom GetRoom(Point point)
+        {
+            return GetRoom(GetFloorTile((point.X), point.Y));
+        }
+
+        public FloorRoom GetRoom(ITile tile)
+        {
+           return FloorRooms.FirstOrDefault(x => x.FloorTiles.Contains(tile));
+        }
+
 		public void FillArea(int width, int height, int cost, bool borders)
 		{
 			FloorTiles = new List<ITile>();

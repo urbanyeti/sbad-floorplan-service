@@ -41,7 +41,7 @@ namespace SBad.Map.Test
 				Height = 5,
 				WallValue = 20,
 				FloorValue = 1,
-				DoorTile = new DoorTile(4, 2, 3, "Door")
+				DoorTile = new DoorTile(4, 2, cost:3, notes:"Door")
 			};
 			FloorRoom room = roomService.GenerateRoom(roomPlan);
 			plan.AddRoom(room, new Point(3, 12));
