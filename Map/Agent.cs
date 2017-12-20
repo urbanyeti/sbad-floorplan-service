@@ -5,17 +5,30 @@ namespace SBad.Map
 {
 	public class Agent : IAgent
 	{
+		public Agent() { }
+		public Agent(Point point)
+		{
+			Point = point;
+		}
+
 		public string Name { get; set; }
-		public Point Point { get; set; }
+		public Point Point { get; private set; }
 		public Point? OldPoint { get; set; }
 		public int X { get { return Point.X; } }
 		public int Y { get { return Point.Y; } }
 		public string Notes { get; set; }
 		public virtual List<Point> Path { get; private set; }
 
-		public virtual void SetPath(List<Point> path)
+		public virtual IAgent SetPath(List<Point> path)
 		{
 			Path = path;
+			return this;
+		}
+
+		public virtual IAgent Move(Point point)
+		{
+			Point = point;
+			return this;
 		}
 
 		public bool FollowPath(FloorPlan plan)
