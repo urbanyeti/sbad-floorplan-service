@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SBad.Map
 {
-	public class BotAgent
+	public class Agent : IAgent
 	{
 		public string Name { get; set; }
 		public Point Point { get; set; }
@@ -11,9 +11,9 @@ namespace SBad.Map
 		public int X { get { return Point.X; } }
 		public int Y { get { return Point.Y; } }
 		public string Notes { get; set; }
-		public List<Point> Path { get; private set; }
+		public virtual List<Point> Path { get; private set; }
 
-		public void SetPath(List<Point> path)
+		public virtual void SetPath(List<Point> path)
 		{
 			Path = path;
 		}

@@ -18,11 +18,11 @@ namespace SBad.Map.Test
 		public void Agent_follows_path()
 		{
 			RoomService roomService = NSubstitute.Substitute.For<RoomService>();
-			FloorPlan plan = new FloorPlan(5, 4, fill:true);
+			var plan = new FloorPlan(5, 4, fill:true);
 
-			BotAgent agent = NSubstitute.Substitute.For<BotAgent>();
+			var agent = new Agent();// NSubstitute.Substitute.For<Agent>();
 			agent.Point = new Point(1, 1);
-			plan.AddAgent(agent);
+			plan.AddAgent("Test Agent", agent);
 
 			NavigationService navService = NSubstitute.Substitute.For<NavigationService>(plan);
 			agent.SetPath(navService.FindPath(agent.Point, new Point(3, 2)));
@@ -56,9 +56,9 @@ namespace SBad.Map.Test
 			RoomService roomService = NSubstitute.Substitute.For<RoomService>();
 			FloorPlan plan = new FloorPlan(3, 3, fill:true);
 
-			BotAgent agent = NSubstitute.Substitute.For<BotAgent>();
+			Agent agent = NSubstitute.Substitute.For<Agent>();
 			agent.Point = new Point(1, 1);
-			plan.AddAgent(agent);
+			plan.AddAgent("Test Agent", agent);
 
 			var tile = plan.GetFloorTile(2, 2);
 			agent.AttackTile(tile).Should().BeFalse();

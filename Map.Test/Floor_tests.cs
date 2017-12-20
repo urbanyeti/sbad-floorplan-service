@@ -12,7 +12,7 @@ namespace SBad.Map.Test
 		[TestMethod]
 		public void FloorPlan_displays_costs()
 		{
-			FloorPlan plan = NSubstitute.Substitute.For<FloorPlan>();
+			var plan = new FloorPlan();
 			plan.FloorTiles.Add(new FloorTile(0, 0));
 			plan.FloorTiles.Add(new FloorTile(1, 0, cost: -1));
 			plan.FloorTiles.Add(new FloorTile(2, 0, cost: 1));
@@ -32,7 +32,7 @@ namespace SBad.Map.Test
 		[TestMethod]
 		public void FloorPlan_displays_paths()
 		{
-			FloorPlan plan = NSubstitute.Substitute.For<FloorPlan>();
+			var plan = new FloorPlan();
 			plan.FloorTiles.AddRange(_FillArea(2, 2));
 
 			var path = new List<Point>();
@@ -47,10 +47,10 @@ namespace SBad.Map.Test
 		[TestMethod]
 		public void FloorPlan_displays_agents()
 		{
-			FloorPlan plan = NSubstitute.Substitute.For<FloorPlan>();
+			var plan = new FloorPlan();//NSubstitute.Substitute.For<FloorPlan>();
 			plan.FloorTiles.AddRange(_FillArea(3, 1));
 
-			plan.AddAgent(new BotAgent { Point = new Point(1, 0) });
+			plan.AddAgent("Test Agent", new Agent { Point = new Point(1, 0) });
 			string display = plan.Print();
 
 			Debug.Write(display);
@@ -101,14 +101,14 @@ namespace SBad.Map.Test
 		[TestMethod]
 		public void FloorPlan_detects_agents()
 		{
-			FloorPlan plan = NSubstitute.Substitute.For<FloorPlan>();
+			FloorPlan plan = new FloorPlan();//NSubstitute.Substitute.For<FloorPlan>();
 			plan.FloorTiles.AddRange(_FillArea(30, 10, 1));
 			plan.IsAgentOnTile(11, 4).Should().BeFalse();
 
-			BotAgent agent = NSubstitute.Substitute.For<BotAgent>();
+			var agent = new Agent();// NSubstitute.Substitute.For<IAgent>();
 			agent.Point = new Point(11, 4);
 
-			plan.AddAgent(agent);
+			plan.AddAgent("Test Agent", agent);
 			plan.IsAgentOnTile(11, 4).Should().BeTrue();
 
 			plan.IsAgentOnTile(4, 11).Should().BeFalse();

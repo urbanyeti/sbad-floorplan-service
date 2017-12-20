@@ -14,7 +14,7 @@ namespace SBad.Map.Test
 		[TestMethod]
 		public void NavigationService_works()
 		{
-			FloorPlan plan = NSubstitute.Substitute.For<FloorPlan>();
+			var plan = new FloorPlan();
 			plan.FloorTiles.AddRange(_FillArea(20, 10, 1));
 			plan.GetFloorTile(1, 0).Cost = 3;
 			plan.GetFloorTile(0, 1).Cost = 2;

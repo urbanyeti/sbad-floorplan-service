@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SBad.Map
 {
-	public class FloorPlan
+	public class FloorPlan : IFloorPlan
 	{
 		public FloorPlan() { }
 		public FloorPlan(int width, int height, bool fill = false)
@@ -24,7 +24,7 @@ namespace SBad.Map
 		public int Height { get; set; }
 		protected List<FloorRoom> FloorRooms { get; } = new List<FloorRoom>();
 		public List<ITile> FloorTiles { get; set; } = new List<ITile>();
-		protected List<BotAgent> BotAgents { get; } = new List<BotAgent>();
+		protected virtual Dictionary<string, IAgent> Agents { get; } = new Dictionary<string, IAgent>();
 		public string Notes { get; set; }
 
 		public void AddRoom(FloorRoom room)
@@ -49,9 +49,9 @@ namespace SBad.Map
 			}
 		}
 
-		public void AddAgent(BotAgent agent)
+		public void AddAgent(string key, IAgent agent)
 		{
-			BotAgents.Add(agent);
+			Agents[key] = (agent);
 		}
 
 		public bool IsAgentOnTile(ITile floorTile)
@@ -61,7 +61,7 @@ namespace SBad.Map
 				return false;
 			}
 
-			return BotAgents.Any(b => b.X == floorTile.X && b.Y == floorTile.Y);
+			return Agents.Values.Any(b => b.X == floorTile.X && b.Y == floorTile.Y);
 		}
 
 		public bool IsAgentOnTile(int x, int y)
