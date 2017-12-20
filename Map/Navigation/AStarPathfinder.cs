@@ -7,7 +7,7 @@ namespace SBad.Map.Navigation
 {
     public class AStarPathfinder : IPathfinder
     {
-		public AStarPathfinder(int maxRow, int maxCol, int[,] weight)
+		public AStarPathfinder(int maxRow, int maxCol, decimal[,] weight)
 		{
 			MaxRow = maxRow;
 			MaxCol = maxCol;
@@ -15,7 +15,7 @@ namespace SBad.Map.Navigation
 		}
 		public int MaxRow { get; set; }
 		public int MaxCol { get; set; }
-		public int[,] Weight { get; set; }
+		public decimal[,] Weight { get; set; }
 
 		public List<Point> FindPath(Point start, Point end)
 		{
@@ -25,57 +25,73 @@ namespace SBad.Map.Navigation
 			var nodeDistance = new Dictionary<Point, decimal>();
 			var expectedDistance = new Dictionary<Point, decimal>();
 
-			// Init
-			nodeDistance.Add(start, 0);
-			expectedDistance.Add(start, Math.Abs(start.X - end.X) + Math.Abs(start.Y - end.Y));
-
-			while (newNodes.Count > 0)
+			try
 			{
-				// Get the node with the lowest estimated cost to finish
-				var current = newNodes.OrderBy(x => expectedDistance[x]).First();
-				if (current.X == end.X && current.Y == end.Y)
-				{
-					// We're done-- grab the most direct route
-					return _ShortestPath(parentNodes, end);
-				}
-				// Node is checked
-				newNodes.Remove(current);
-				checkedNodes.Add(current);
 
-				foreach (var neighbor in _GetNearbyNodes(current))
-				{
-					var weight = Weight[neighbor.X, neighbor.Y];
-					var currentDistance = nodeDistance[current] + weight;
+				// Init
+				nodeDistance.Add(start, 0);
+				expectedDistance.Add(start, Math.Abs(start.X - end.X) + Math.Abs(start.Y - end.Y));
 
-					// Already found shorter path?
-					if (checkedNodes.Contains(neighbor) && currentDistance >= nodeDistance[neighbor])
+				while (newNodes.Count > 0)
+				{
+					// Get the node with the lowest estimated cost to finish
+					var current = newNodes.OrderBy(x => expectedDistance[x]).First();
+					if (current.X == end.X && current.Y == end.Y)
 					{
-						continue;
+						// We're done-- grab the most direct route
+						return _ShortestPath(parentNodes, end);
 					}
+					// Node is checked
+					newNodes.Remove(current);
+					checkedNodes.Add(current);
 
-					if (!nodeDistance.Keys.Contains(neighbor) || currentDistance < nodeDistance[neighbor])
+					foreach (var neighbor in _GetNearbyNodes(current))
 					{
-						if (parentNodes.Keys.Contains(neighbor))
+						var weight = Weight[neighbor.X, neighbor.Y];
+
+						// Diagonal moves take longer
+						if (Math.Abs(current.X - neighbor.X) + Math.Abs(current.Y - neighbor.Y) > 1)
 						{
-							parentNodes[neighbor] = current;
-						}
-						else
-						{
-							parentNodes.Add(neighbor, current);
+							weight *= 1.4m;
 						}
 
-						nodeDistance[neighbor] = currentDistance;
-						expectedDistance[neighbor] = nodeDistance[neighbor] + Math.Abs(neighbor.X - end.X) + Math.Abs(neighbor.Y - end.Y);
+						var currentDistance = nodeDistance[current] + weight;
 
-						if (!newNodes.Contains(neighbor))
+						// Already found shorter path?
+						if (checkedNodes.Contains(neighbor) && currentDistance >= nodeDistance[neighbor])
 						{
-							newNodes.Add(neighbor);
+							continue;
+						}
+
+						if (!nodeDistance.Keys.Contains(neighbor) || currentDistance < nodeDistance[neighbor])
+						{
+							if (parentNodes.Keys.Contains(neighbor))
+							{
+								parentNodes[neighbor] = current;
+							}
+							else
+							{
+								parentNodes.Add(neighbor, current);
+							}
+
+							nodeDistance[neighbor] = currentDistance;
+							expectedDistance[neighbor] = nodeDistance[neighbor] + Math.Abs(neighbor.X - end.X) + Math.Abs(neighbor.Y - end.Y);
+
+							if (!newNodes.Contains(neighbor))
+							{
+								newNodes.Add(neighbor);
+							}
 						}
 					}
 				}
 			}
 
-			throw new Exception($"Can't find path from ({start.X},{start.Y}) to ({end.X},{end.Y})");
+			catch (Exception ex)
+			{
+				throw new PathNotFound($"Error generating path from {start} to {end}", ex);
+			}
+
+			throw new PathNotFound($"Can't find path from {start} to {end}");
 		}
 
 		private IEnumerable<Point> _GetNearbyNodes(Point node)

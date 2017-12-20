@@ -21,7 +21,7 @@ namespace SBad.Map.Test
 			var plan = new FloorPlan(5, 4, fill:true);
 
 			var agent = new Agent();// NSubstitute.Substitute.For<Agent>();
-			agent.Point = new Point(1, 1);
+			agent.Move(new Point(1, 1));
 			plan.AddAgent("Test Agent", agent);
 
 			NavigationService navService = NSubstitute.Substitute.For<NavigationService>(plan);
@@ -54,10 +54,10 @@ namespace SBad.Map.Test
 		public void Agents_attack_tiles()
 		{
 			RoomService roomService = NSubstitute.Substitute.For<RoomService>();
-			FloorPlan plan = new FloorPlan(3, 3, fill:true);
+			var plan = new FloorPlan(3, 3, fill:true);
 
-			Agent agent = NSubstitute.Substitute.For<Agent>();
-			agent.Point = new Point(1, 1);
+			var agent = new Agent(); //NSubstitute.Substitute.For<Agent>();
+			agent.Move(new Point(1, 1));
 			plan.AddAgent("Test Agent", agent);
 
 			var tile = plan.GetFloorTile(2, 2);
