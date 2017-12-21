@@ -14,7 +14,7 @@ namespace SBad.Map
 
 		public ITile ExitTile { get; set; }
 
-		public override ITile Shift(Point origin)
+		public override ITile Shift(Location origin)
 		{
 			return new DoorTile(X + origin.X, Y + origin.Y, ExitTile?.Shift(origin), Cost, Notes);
 		}

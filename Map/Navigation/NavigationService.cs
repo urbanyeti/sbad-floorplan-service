@@ -37,9 +37,9 @@ namespace SBad.Map.Navigation
 			}
 		}
 
-		public List<Point> Navigate(Point start, Point end, List<Point> path)
+		public List<Location> Navigate(Location start, Location end, List<Location> path)
 		{
-			List<Point> pathSoFar = path;
+			List<Location> pathSoFar = path;
 			FloorRoom room = FloorPlan.GetRoom(start);
 
 			if (room == FloorPlan.GetRoom((end)))
@@ -63,7 +63,7 @@ namespace SBad.Map.Navigation
 			return pathSoFar;
 		}
 
-		public List<Point> FindPath(Point start, Point end)
+		public List<Location> FindPath(Location start, Location end)
 		{
 			return Pathfinder.FindPath(start, end);
 		}

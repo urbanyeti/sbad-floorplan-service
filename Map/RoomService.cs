@@ -16,15 +16,15 @@ namespace SBad.Map
 				for (int row = 0; row < roomType.Height; row++)
 				{
 					var tile = new FloorTile(col, row);
-					switch (new Point(col, row))
+					switch (new Location(col, row))
 					{
 						// Door
 						case var p when (roomType.DoorTile?.Point == p):
 							tile = roomType.DoorTile;
 							break;
 						// Walls
-						case var p when (roomType.WallValue > 0 && (p.X == 0 || p.X == (roomType.Width - 1)
-																	|| p.Y == 0 || p.Y == (roomType.Height - 1))):
+						case var p when ( p.X == 0 || p.X == (roomType.Width - 1)
+																	|| p.Y == 0 || p.Y == (roomType.Height - 1)):
 							tile.Cost = roomType.WallValue;
 							tile.Notes = "Wall";
 							break;

@@ -38,11 +38,11 @@ namespace SBad.Map
 			return floorTiles.SingleOrDefault(t => x >= 0 && y >= 0 && t.X == x && t.Y == y);
 		}
 
-		public static string Print(this FloorPlan floorPlan, List<Point> path = null)
+		public static string Print(this FloorPlan floorPlan, List<Location> path = null)
 		{
 			if (path == null)
 			{
-				path = new List<Point>();
+				path = new List<Location>();
 			}
 
 			var sb = new StringBuilder();
@@ -57,9 +57,9 @@ namespace SBad.Map
 					{
 						sb.Append("@");
 					}
-					else if (path.Contains(new Point(col, row)))
+					else if (path.Contains(new Location(col, row)))
 					{
-						sb.Append(path.IndexOf(new Point(col, row)).ToLetter());
+						sb.Append(path.IndexOf(new Location(col, row)).ToLetter());
 						//sb.Append("=");
 					}
 					else

@@ -12,7 +12,7 @@ namespace SBad.Map
         public List<DoorTile> DoorTiles { get { return FloorTiles.Where(x=> x is DoorTile).Select(x=> (DoorTile)x).ToList();}}
 		public string Notes { get; set; }
 
-		public FloorRoom Shift(Point point)
+		public FloorRoom Shift(Location point)
 		{
 			var shiftedRoom = new FloorRoom
 			{

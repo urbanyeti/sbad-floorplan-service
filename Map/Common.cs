@@ -4,7 +4,7 @@ namespace SBad.Map
 {
 	public static class Common
     {
-		public static bool IsNearby(this Point point, Point point2)
+		public static bool IsNearby(this Location point, Location point2)
 		{
 			return (point2 == point.GetNorth()
 				|| point2 == point.GetEast()
@@ -12,24 +12,24 @@ namespace SBad.Map
 				|| point2 == point.GetWest());
 		}
 
-		public static Point GetNorth(this Point point)
+		public static Location GetNorth(this Location point)
 		{
-			return new Point(point.X, point.Y - 1);
+			return new Location(point.X, point.Y - 1);
 		}
 
-		public static Point GetEast(this Point point)
+		public static Location GetEast(this Location point)
 		{
-			return new Point(point.X + 1, point.Y);
+			return new Location(point.X + 1, point.Y);
 		}
 
-		public static Point GetSouth(this Point point)
+		public static Location GetSouth(this Location point)
 		{
-			return new Point(point.X, point.Y + 1);
+			return new Location(point.X, point.Y + 1);
 		}
 
-		public static Point GetWest(this Point point)
+		public static Location GetWest(this Location point)
 		{
-			return new Point(point.X - 1, point.Y);
+			return new Location(point.X - 1, point.Y);
 		}
 	}
 
@@ -42,9 +42,9 @@ namespace SBad.Map
 		West = 4
 	}
 
-	public struct Point : IEquatable<Point>
+	public struct Location : IEquatable<Location>
 	{
-		public Point(int x, int y)
+		public Location(int x, int y)
 		{
 			X = x;
 			Y = y;
@@ -52,16 +52,16 @@ namespace SBad.Map
 		public int X { get; }
 		public int Y { get; }
 
-		public bool Equals(Point other)
+		public bool Equals(Location other)
 		{
 			return (X == other.X && Y == other.Y);
 		}
 
 		public override bool Equals(object obj)
 		{
-			if (obj is Point)
+			if (obj is Location)
 			{
-				return Equals((Point)obj);
+				return Equals((Location)obj);
 			}
 			return false;
 		}
@@ -78,12 +78,12 @@ namespace SBad.Map
 			}
 		}
 
-		public static bool operator ==(Point p1, Point p2)
+		public static bool operator ==(Location p1, Location p2)
 		{
 			return p1.Equals(p2);
 		}
 
-		public static bool operator !=(Point p1, Point p2)
+		public static bool operator !=(Location p1, Location p2)
 		{
 			return !p1.Equals(p2);
 		}

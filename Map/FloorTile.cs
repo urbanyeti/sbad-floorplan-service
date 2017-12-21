@@ -8,16 +8,16 @@ namespace SBad.Map
 	{
 		public FloorTile(int x, int y, int? cost = null, string notes = "")
 		{
-			Point = new Point(x, y);
+			Point = new Location(x, y);
 			Cost = cost;
 			Notes = notes;
 		}
-		public Point Point { get; set; }
+		public Location Point { get; set; }
 		public int X { get { return Point.X; } }
 		public int Y { get { return Point.Y; } }
 		public int? Cost { get; set; }
 		public string Notes { get; set; } = "";
-		public virtual ITile Shift(Point origin)
+		public virtual ITile Shift(Location origin)
 		{
 			return new FloorTile(X + origin.X, Y + origin.Y, Cost, Notes);
 		}

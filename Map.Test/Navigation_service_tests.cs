@@ -23,7 +23,7 @@ namespace SBad.Map.Test
 			plan.GetFloorTile(0, 8).Cost = 3;
 
 			NavigationService service = NSubstitute.Substitute.For<NavigationService>(plan);
-			var path = service.FindPath(new Point(0, 0), new Point(14, 8));
+			var path = service.FindPath(new Location(0, 0), new Location(14, 8));
 
 			Debug.Write(plan.Print(path));
 		}
@@ -44,13 +44,13 @@ namespace SBad.Map.Test
 				DoorTile = new DoorTile(4, 2, cost:3, notes:"Door")
 			};
 			FloorRoom room = roomService.GenerateRoom(roomPlan);
-			plan.AddRoom(room, new Point(3, 12));
+			plan.AddRoom(room, new Location(3, 12));
 
 			var display = plan.Print();
 			Debug.WriteLine(display);
 
 			NavigationService navService = NSubstitute.Substitute.For<NavigationService>(plan);
-			var path = navService.FindPath(new Point(1, 1), new Point(5, 14));
+			var path = navService.FindPath(new Location(1, 1), new Location(5, 14));
 			display = plan.Print(path);
 			Debug.Write(display);
 		}

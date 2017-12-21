@@ -17,13 +17,13 @@ namespace SBad.Map.Navigation
 		public int MaxCol { get; set; }
 		public decimal[,] Weight { get; set; }
 
-		public List<Point> FindPath(Point start, Point end)
+		public List<Location> FindPath(Location start, Location end)
 		{
-			var checkedNodes = new List<Point>();
-			var newNodes = new List<Point> { start };
-			var parentNodes = new Dictionary<Point, Point>();
-			var nodeDistance = new Dictionary<Point, decimal>();
-			var expectedDistance = new Dictionary<Point, decimal>();
+			var checkedNodes = new List<Location>();
+			var newNodes = new List<Location> { start };
+			var parentNodes = new Dictionary<Location, Location>();
+			var nodeDistance = new Dictionary<Location, decimal>();
+			var expectedDistance = new Dictionary<Location, decimal>();
 
 			try
 			{
@@ -94,35 +94,35 @@ namespace SBad.Map.Navigation
 			throw new PathNotFound($"Can't find path from {start} to {end}");
 		}
 
-		private IEnumerable<Point> _GetNearbyNodes(Point node)
+		private IEnumerable<Location> _GetNearbyNodes(Location node)
 		{
-			var nodes = new List<Point>();
+			var nodes = new List<Location>();
 
 			// North
-			if (node.Y > 0 && Weight[node.X, node.Y - 1] > 0) { nodes.Add(new Point(node.X, node.Y - 1)); }
+			if (node.Y > 0 && Weight[node.X, node.Y - 1] > 0) { nodes.Add(new Location(node.X, node.Y - 1)); }
 			// Northeast
-			if (node.Y > 0 && node.X < MaxCol && Weight[node.X + 1, node.Y - 1] > 0) { nodes.Add(new Point(node.X + 1, node.Y - 1)); }
+			if (node.Y > 0 && node.X < MaxCol && Weight[node.X + 1, node.Y - 1] > 0) { nodes.Add(new Location(node.X + 1, node.Y - 1)); }
 			// East
-			if (node.X < MaxCol && Weight[node.X + 1, node.Y] > 0) { nodes.Add(new Point(node.X + 1, node.Y)); }
+			if (node.X < MaxCol && Weight[node.X + 1, node.Y] > 0) { nodes.Add(new Location(node.X + 1, node.Y)); }
 			// Southeast
-			if (node.Y < MaxRow && node.X < MaxCol && Weight[node.X + 1, node.Y + 1] > 0) { nodes.Add(new Point(node.X + 1, node.Y + 1)); }
+			if (node.Y < MaxRow && node.X < MaxCol && Weight[node.X + 1, node.Y + 1] > 0) { nodes.Add(new Location(node.X + 1, node.Y + 1)); }
 			// South
-			if (node.Y < MaxRow && Weight[node.X, node.Y + 1] > 0) { nodes.Add(new Point(node.X, node.Y + 1)); }
+			if (node.Y < MaxRow && Weight[node.X, node.Y + 1] > 0) { nodes.Add(new Location(node.X, node.Y + 1)); }
 			// Southwest
-			if (node.Y < MaxRow &&  node.X > 0 && Weight[node.X - 1, node.Y + 1] > 0) { nodes.Add(new Point(node.X - 1, node.Y + 1)); }
+			if (node.Y < MaxRow &&  node.X > 0 && Weight[node.X - 1, node.Y + 1] > 0) { nodes.Add(new Location(node.X - 1, node.Y + 1)); }
 			// West
-			if (node.X > 0 && Weight[node.X - 1, node.Y] > 0) { nodes.Add(new Point(node.X - 1, node.Y)); }
+			if (node.X > 0 && Weight[node.X - 1, node.Y] > 0) { nodes.Add(new Location(node.X - 1, node.Y)); }
 			// Northwest
-			if (node.Y > 0 && node.X > 0 && Weight[node.X - 1, node.Y - 1] > 0) { nodes.Add(new Point(node.X - 1, node.Y - 1)); }
+			if (node.Y > 0 && node.X > 0 && Weight[node.X - 1, node.Y - 1] > 0) { nodes.Add(new Location(node.X - 1, node.Y - 1)); }
 
 			return nodes;
 		}
 
-		private List<Point> _ShortestPath(Dictionary<Point, Point> parentNodes, Point current)
+		private List<Location> _ShortestPath(Dictionary<Location, Location> parentNodes, Location current)
 		{
 			if (!parentNodes.Keys.Contains(current))
 			{
-				return new List<Point> { current };
+				return new List<Location> { current };
 			}
 
 			var path = _ShortestPath(parentNodes, parentNodes[current]);

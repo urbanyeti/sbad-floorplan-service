@@ -29,9 +29,9 @@ namespace SBad.Map
 
 		public void AddRoom(FloorRoom room)
 		{
-			AddRoom(room, new Point(0, 0));
+			AddRoom(room, new Location(0, 0));
 		}
-		public void AddRoom(FloorRoom room, Point origin)
+		public void AddRoom(FloorRoom room, Location origin)
 		{
 			var placedRoom = room.Shift(origin);
 			FloorRooms.Add(placedRoom);
@@ -70,7 +70,7 @@ namespace SBad.Map
 			return IsAgentOnTile(tile);
 		}
 
-		public ITile GetFloorTile(Point point)
+		public ITile GetFloorTile(Location point)
 		{
 			return GetFloorTile(point.X, point.Y);
 		}
@@ -80,7 +80,7 @@ namespace SBad.Map
 			return FloorTiles.SingleOrDefault(t => x >= 0 && y >= 0 && t.X == x && t.Y == y);
 		}
 
-        public FloorRoom GetRoom(Point point)
+        public FloorRoom GetRoom(Location point)
         {
             return GetRoom(GetFloorTile((point.X), point.Y));
         }
@@ -98,7 +98,7 @@ namespace SBad.Map
 				for (int row = 0; row < height; row++)
 				{
 					var tile = new FloorTile(col, row);
-					switch (new Point(col, row))
+					switch (new Location(col, row))
 					{
 						// Borders
 						case var p when borders && (p.X == 0 || p.X == (width - 1) || p.Y == 0 || p.Y == (height - 1)):

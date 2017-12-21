@@ -6,15 +6,15 @@ namespace SBad.Map
 	{
 		string Name { get; set; }
 		string Notes { get; set; }
-		Point? OldPoint { get; set; }
-		List<Point> Path { get; }
-		Point Point { get; }
+		Location? OldPoint { get; set; }
+		List<Location> Path { get; }
+		Location Point { get; }
 		int X { get; }
 		int Y { get; }
 
 		bool AttackTile(ITile tile);
 		bool FollowPath(FloorPlan plan);
-		IAgent SetPath(List<Point> path);
-		IAgent Move(Point point);
+		IAgent SetPath(List<Location> path);
+		IAgent Move(Location point);
 	}
 }

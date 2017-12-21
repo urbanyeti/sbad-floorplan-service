@@ -5,6 +5,6 @@ namespace SBad.Map.Navigation
 {
 	public interface IPathfinder
 	{
-		List<Point> FindPath(Point start, Point end);
+		List<Location> FindPath(Location start, Location end);
 	}
 }

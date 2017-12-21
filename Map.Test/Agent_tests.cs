@@ -21,11 +21,11 @@ namespace SBad.Map.Test
 			var plan = new FloorPlan(5, 4, fill:true);
 
 			var agent = new Agent();// NSubstitute.Substitute.For<Agent>();
-			agent.Move(new Point(1, 1));
+			agent.Move(new Location(1, 1));
 			plan.AddAgent("Test Agent", agent);
 
 			NavigationService navService = NSubstitute.Substitute.For<NavigationService>(plan);
-			agent.SetPath(navService.FindPath(agent.Point, new Point(3, 2)));
+			agent.SetPath(navService.FindPath(agent.Point, new Location(3, 2)));
 
 			var display = plan.Print(agent.Path);
 			Debug.WriteLine(display);
@@ -57,7 +57,7 @@ namespace SBad.Map.Test
 			var plan = new FloorPlan(3, 3, fill:true);
 
 			var agent = new Agent(); //NSubstitute.Substitute.For<Agent>();
-			agent.Move(new Point(1, 1));
+			agent.Move(new Location(1, 1));
 			plan.AddAgent("Test Agent", agent);
 
 			var tile = plan.GetFloorTile(2, 2);

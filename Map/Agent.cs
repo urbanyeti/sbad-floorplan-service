@@ -6,37 +6,37 @@ namespace SBad.Map
 	public class Agent : IAgent
 	{
 		public Agent() { }
-		public Agent(Point point)
+		public Agent(Location point)
 		{
 			Point = point;
 		}
 
 		public string Name { get; set; }
-		public Point Point { get; private set; }
-		public Point? OldPoint { get; set; }
+		public Location Point { get; private set; }
+		public Location? OldPoint { get; set; }
 		public int X { get { return Point.X; } }
 		public int Y { get { return Point.Y; } }
 		public string Notes { get; set; }
-		public virtual List<Point> Path { get; private set; }
+		public virtual List<Location> Path { get; private set; }
 
-		public virtual IAgent SetPath(List<Point> path)
+		public virtual IAgent SetPath(List<Location> path)
 		{
 			Path = path;
 			return this;
 		}
 
-		public virtual IAgent Move(Point point)
+		public virtual IAgent Move(Location point)
 		{
 			Point = point;
 			return this;
 		}
 
-		public bool FollowPath(FloorPlan plan)
+		public virtual bool FollowPath(FloorPlan plan)
 		{
 			int currentIndex = Path.FindIndex(p => p.X == X && p.Y == Y);
 			if (currentIndex < Path.Count - 1)
 			{
-				Point nextPoint = Path[currentIndex + 1];
+				Location nextPoint = Path[currentIndex + 1];
 				var tile = plan.GetFloorTile(nextPoint);
 				if (tile.Cost > 1)
 				{
@@ -56,7 +56,7 @@ namespace SBad.Map
 			}
 		}
 
-		public bool AttackTile(ITile tile)
+		public virtual bool AttackTile(ITile tile)
 		{
 			if (tile != null && Point.IsNearby(tile.Point))
 			{

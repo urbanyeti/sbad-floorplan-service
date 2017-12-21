@@ -35,9 +35,9 @@ namespace SBad.Map.Test
 			var plan = new FloorPlan();
 			plan.FloorTiles.AddRange(_FillArea(2, 2));
 
-			var path = new List<Point>();
-			path.Add(new Point(0, 0));
-			path.Add(new Point(1, 1));
+			var path = new List<Location>();
+			path.Add(new Location(0, 0));
+			path.Add(new Location(1, 1));
 			string display = plan.Print(path);
 
 			Debug.Write(display);
@@ -50,7 +50,7 @@ namespace SBad.Map.Test
 			var plan = new FloorPlan();//NSubstitute.Substitute.For<FloorPlan>();
 			plan.FloorTiles.AddRange(_FillArea(3, 1));
 
-			plan.AddAgent("Test Agent", new Agent().Move(new Point(1, 0)));
+			plan.AddAgent("Test Agent", new Agent().Move(new Location(1, 0)));
 			string display = plan.Print();
 
 			Debug.Write(display);
@@ -106,7 +106,7 @@ namespace SBad.Map.Test
 			plan.IsAgentOnTile(11, 4).Should().BeFalse();
 
 			var agent = new Agent();// NSubstitute.Substitute.For<IAgent>();
-			agent.Move(new Point(11, 4));
+			agent.Move(new Location(11, 4));
 
 			plan.AddAgent("Test Agent", agent);
 			plan.IsAgentOnTile(11, 4).Should().BeTrue();
