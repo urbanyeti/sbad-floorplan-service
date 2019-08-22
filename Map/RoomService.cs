@@ -4,9 +4,9 @@ using System.Text;
 
 namespace SBad.Map
 {
-	public class RoomService : IRoomService
+	public class RoomService : IRoomService<FloorRoom>
 	{
-		public IFloorRoom GenerateRoom(RoomPlan roomType)
+		public FloorRoom GenerateRoom(RoomPlan roomType)
 		{
 			FloorRoom room = new FloorRoom();
 			room.FloorTiles = new List<ITile>();

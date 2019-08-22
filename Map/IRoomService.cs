@@ -1,8 +1,8 @@
 ﻿using System;
 namespace SBad.Map
 {
-	public interface IRoomService
+	public interface IRoomService<T> where T : IFloorRoom
 	{
-        IFloorRoom GenerateRoom(RoomPlan roomType);
+        T GenerateRoom(RoomPlan roomType);
 	}
 }
