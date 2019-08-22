@@ -3,6 +3,6 @@ namespace SBad.Map
 {
 	public interface IRoomService
 	{
-		FloorRoom GenerateRoom(RoomPlan roomType);
+        IFloorRoom GenerateRoom(RoomPlan roomType);
 	}
 }

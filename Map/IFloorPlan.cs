@@ -11,13 +11,13 @@ namespace SBad.Map
 		int Width { get; set; }
 
 		void AddAgent(string key, IAgent agent);
-		void AddRoom(FloorRoom room);
-		void AddRoom(FloorRoom room, Location origin);
+		void AddRoom(IFloorRoom room);
+		void AddRoom(IFloorRoom room, Location origin);
 		void FillArea(int width, int height, int cost, bool borders);
 		ITile GetFloorTile(int x, int y);
 		ITile GetFloorTile(Location point);
-		FloorRoom GetRoom(ITile tile);
-		FloorRoom GetRoom(Location point);
+		IFloorRoom GetRoom(ITile tile);
+		IFloorRoom GetRoom(Location point);
 		bool IsAgentOnTile(int x, int y);
 		bool IsAgentOnTile(ITile floorTile);
 	}

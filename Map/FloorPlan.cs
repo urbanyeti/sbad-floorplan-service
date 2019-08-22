@@ -27,11 +27,11 @@ namespace SBad.Map
 		protected virtual Dictionary<string, IAgent> Agents { get; } = new Dictionary<string, IAgent>();
 		public string Notes { get; set; }
 
-		public void AddRoom(FloorRoom room)
+		public void AddRoom(IFloorRoom room)
 		{
 			AddRoom(room, new Location(0, 0));
 		}
-		public void AddRoom(FloorRoom room, Location origin)
+		public void AddRoom(IFloorRoom room, Location origin)
 		{
 			var placedRoom = room.Shift(origin);
 			FloorRooms.Add(placedRoom);
@@ -80,12 +80,12 @@ namespace SBad.Map
 			return FloorTiles.SingleOrDefault(t => x >= 0 && y >= 0 && t.X == x && t.Y == y);
 		}
 
-        public FloorRoom GetRoom(Location point)
+        public IFloorRoom GetRoom(Location point)
         {
             return GetRoom(GetFloorTile((point.X), point.Y));
         }
 
-        public FloorRoom GetRoom(ITile tile)
+        public IFloorRoom GetRoom(ITile tile)
         {
            return FloorRooms.FirstOrDefault(x => x.FloorTiles.Contains(tile));
         }

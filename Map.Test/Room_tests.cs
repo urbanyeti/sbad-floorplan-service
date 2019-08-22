@@ -25,7 +25,7 @@ namespace SBad.Map.Test
 				DoorTile = new DoorTile(1, 0, cost: 3, notes: "Door")
 			};
 
-			FloorRoom room = service.GenerateRoom(roomType);
+            IFloorRoom room = service.GenerateRoom(roomType);
 			string display = room.FloorTiles.Print();
 			Debug.WriteLine(display);
 			display.ShouldBeEquivalentTo("535" + Environment.NewLine + "5_5" + Environment.NewLine + "555" + Environment.NewLine);

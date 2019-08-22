@@ -6,7 +6,7 @@ namespace SBad.Map
 {
 	public class RoomService : IRoomService
 	{
-		public FloorRoom GenerateRoom(RoomPlan roomType)
+		public IFloorRoom GenerateRoom(RoomPlan roomType)
 		{
 			FloorRoom room = new FloorRoom();
 			room.FloorTiles = new List<ITile>();

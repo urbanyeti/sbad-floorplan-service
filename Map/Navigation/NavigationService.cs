@@ -40,7 +40,7 @@ namespace SBad.Map.Navigation
 		public List<Location> Navigate(Location start, Location end, List<Location> path)
 		{
 			List<Location> pathSoFar = path;
-			FloorRoom room = FloorPlan.GetRoom(start);
+			IFloorRoom room = FloorPlan.GetRoom(start);
 
 			if (room == FloorPlan.GetRoom((end)))
 			{

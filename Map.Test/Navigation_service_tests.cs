@@ -43,7 +43,7 @@ namespace SBad.Map.Test
 				FloorValue = 1,
 				DoorTile = new DoorTile(4, 2, cost:3, notes:"Door")
 			};
-			FloorRoom room = roomService.GenerateRoom(roomPlan);
+            IFloorRoom room = roomService.GenerateRoom(roomPlan);
 			plan.AddRoom(room, new Location(3, 12));
 
 			var display = plan.Print();

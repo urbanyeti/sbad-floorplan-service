@@ -1,19 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.4</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>SBad.Map</RootNamespace>
     <AssemblyName>SBad.Map</AssemblyName>
     <Description>Utilities for creating map navigation</Description>
-    <AssemblyVersion>0.6.4.0</AssemblyVersion>
-    <Version>0.6.4-beta</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <Version>1.0.0.0</Version>
     <PackageLicenseUrl>https://github.com/urbanyeti/sbad-floorplan-service/blob/master/LICENSE</PackageLicenseUrl>
     <Copyright>Urbanyeti</Copyright>
     <PackageProjectUrl>https://github.com/urbanyeti/sbad-floorplan-service</PackageProjectUrl>
     <PackageTags>sbad map pathfinding navigation</PackageTags>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <NeutralLanguage>en</NeutralLanguage>
-    <FileVersion>0.6.4.0</FileVersion>
+    <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
