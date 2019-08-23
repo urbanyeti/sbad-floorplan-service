@@ -15,7 +15,7 @@ namespace SBad.Map
 			{
 				for (int row = 0; row < roomType.Height; row++)
 				{
-					var tile = new FloorTile(col, row);
+					ITile tile = new FloorTile(col, row);
 					switch (new Location(col, row))
 					{
 						// Door

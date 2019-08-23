@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SBad.Map
 {
-	public class DoorTile : FloorTile
+	public class DoorTile : FloorTile, IDoorTile
 	{
 		public DoorTile(int x, int y, ITile exitTile = null, int? cost = null, string notes = "")
 			: base(x, y, cost, notes)

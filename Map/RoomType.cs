@@ -7,6 +7,6 @@
 		public int Height { get; set; }
 		public int? WallValue { get; set; } = 0;
 		public int FloorValue { get; set; }
-		public DoorTile DoorTile { get; set; } = null;
+		public IDoorTile DoorTile { get; set; } = null;
 	}
 }
