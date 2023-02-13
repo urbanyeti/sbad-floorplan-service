@@ -55,9 +55,9 @@ TestResults/
 *.sqlite
 # OS generated files #
 ######################
-.DS_Store?
+.DS_Store
 ehthumbs.db
-Icon?
+Icon
 Thumbs.db
 
 
