@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1704.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SBadNav", "SBadNav\SBadNav.csproj", "{C91BB1E6-DEA7-4527-AD6E-C3E2B402BE2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SBadNav.Test", "SBadNav.Test\SBadNav.Test.csproj", "{ABA545F4-B433-4A18-A670-3C567E68FE55}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C91BB1E6-DEA7-4527-AD6E-C3E2B402BE2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C91BB1E6-DEA7-4527-AD6E-C3E2B402BE2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C91BB1E6-DEA7-4527-AD6E-C3E2B402BE2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C91BB1E6-DEA7-4527-AD6E-C3E2B402BE2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABA545F4-B433-4A18-A670-3C567E68FE55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABA545F4-B433-4A18-A670-3C567E68FE55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABA545F4-B433-4A18-A670-3C567E68FE55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABA545F4-B433-4A18-A670-3C567E68FE55}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0BCFF965-0307-4053-B2A8-0B0912A0AE57}
+	EndGlobalSection
+EndGlobal
